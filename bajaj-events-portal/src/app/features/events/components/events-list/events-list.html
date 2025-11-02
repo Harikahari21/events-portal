@@ -1,0 +1,83 @@
+@if(events && events.length > 0){
+
+<h1>{{ title }}</h1>
+<hr />
+<h6>{{ subtitle }}</h6>
+
+@if(childMessage){
+<p>{{ childMessage }}</p>
+}
+<hr />
+
+<div class="container row" style="margin: 20px">
+  <input
+    type="search"
+    id="inputSearch"
+    class="form-control"
+    placeholder="Search Events by Event Name!"
+    [(ngModel)]="searchChars"
+    (input)="searchEvents()"
+  />
+</div>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      @for (col of columns; track $index){
+      <th (click)="sortEvents('eventCode')" style="cursor: pointer">
+        {{ col }}
+        @if(sortColumn === 'eventCode') {
+        <span>{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        }
+      </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (event of filteredEvents | paginate: { itemsPerPage: pageSize, currentPage: pageNumber};
+    track $index){
+    <tr>
+      <td>
+        <span>{{ event.eventCode | lowercaseTrunc }}</span>
+      </td>
+      <td>
+        <!-- <span>{{ event.eventName | lowercaseTrunc }} </span> -->
+        <span>{{ event.eventName | uppercase }}</span>
+      </td>
+      <td>
+        <span>{{ event.startDate.toString() | dateGlobalization : 'en-IN' }}</span>
+      </td>
+      <td>
+        <span>{{ event.fees | currency : 'INR' }}</span>
+      </td>
+      <td>
+        <!-- <button class="btn btn-info" (click)="onEventSelection(event.eventId)">Show Details</button> -->
+        <a class="btn btn-dark" [routerLink]="['/events', event.eventId]">Show Details</a>
+      </td>
+      @if(role === 'Hr'){
+      <td>
+        <!-- <button class="btn btn-info" (click)="onEventSelection(event.eventId)">Show Details</button> -->
+        <a class="btn btn-danger" [routerLink]="['/events', event.eventId]">Cancel Event</a>
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
+<div class="container text-center">
+  <pagination-controls
+    (pageChange)="pageNumber = $event"
+    class="my-pagination"
+  ></pagination-controls>
+</div>
+
+<!-- @if(selectedEventId>0){
+<app-event-details
+  [eventId]="selectedEventId"
+  [subTitle]="childSubTitle"
+  (sendConfirmationMessage)="handleChildMessage($event)"
+></app-event-details>
+} -->
+} @else {
+<h4>Sorryy ! We did not find any event! Please try after some time...!!!</h4>
+}

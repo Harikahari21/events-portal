@@ -1,0 +1,67 @@
+@if(event){
+<h1>{{ title + event.eventName }}</h1>
+
+<!-- table.table.table-hover.table-striped>tbody>tr>th+td>span -->
+<table class="table table-hover table-striped">
+  <tbody>
+    <tr>
+      <th>Event Id</th>
+      <td>
+        <span>{{ event.eventId }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Code</th>
+      <td>
+        <span>{{ event.eventCode }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Name</th>
+      <td>
+        <span>{{ event.eventName | uppercase }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Description</th>
+      <td>
+        <span>{{ event.description | titlecase }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Even Start Date|</th>
+      <td>
+        <span>{{ event.startDate | date }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Even End Date</th>
+      <td>
+        <span>{{ event.endDate | date }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Fees</th>
+      <td>
+        <span>{{ event.fees | currency : 'INR' }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Total Registrations</th>
+      <td>
+        <span>{{ event.seatsFilled | number }}</span>
+      </td>
+    </tr>
+    <tr>
+      <th>Event Logo</th>
+      <td>
+        <img [src]="event.logo" alt="event.eventName" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<!-- <button class="btn btn-success" (click)="onEventProcessed()"></button> -->
+} @else {
+<h4>We did not fount the event which you are looking for !</h4>
+}

@@ -1,0 +1,182 @@
+<div class="container py-5">
+  <h1 class="text-center text-primary fw-bold mb-4">Employee Registration</h1>
+  <hr />
+
+  <form (ngSubmit)="onEmployeeSubmit()" [formGroup]="register.employeeForm" #employeeForm="ngForm">
+    <fieldset class="grid-form">
+      <!-- Employee Name -->
+      <div class="form-group">
+        <label for="inputEmployeeName" class="form-label">Employee Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputEmployeeName"
+          placeholder="Enter employee name"
+          name="employeeName"
+          formControlName="employeeName"
+        />
+        @if(register.employeeForm.controls['employeeName'].errors?.['invalidName']) {
+        <div class="alert alert-danger mt-2">Name must contain only letters!</div>
+        }
+      </div>
+
+      <!-- Employee ID -->
+      <div class="form-group">
+        <label for="inputEmployeeId" class="form-label">Employee ID</label>
+        <input
+          type="number"
+          class="form-control"
+          id="inputEmployeeId"
+          placeholder="Enter employee ID"
+          name="employeeId"
+          formControlName="employeeId"
+        />
+        @if(register.employeeForm.controls['employeeId'].errors?.['invalidEmployeeId']) {
+        <div class="alert alert-danger mt-2">Employee ID must be a positive number!</div>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          placeholder="Enter email"
+          name="email"
+          formControlName="email"
+        />
+        @if(register.employeeForm.controls['email'].errors?.['invalidEmail']) {
+        <div class="alert alert-danger mt-2">Please enter a valid email address!</div>
+        }
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="inputPhone" class="form-label">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputPhone"
+          placeholder="Enter 10-digit phone number"
+          name="phone"
+          formControlName="phone"
+        />
+        @if(register.employeeForm.controls['phone'].errors?.['invalidPhone']) {
+        <div class="alert alert-danger mt-2">Phone must be exactly 10 digits!</div>
+        }
+      </div>
+
+      <!-- City -->
+      <div class="form-group">
+        <label for="inputCity" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCity"
+          placeholder="Enter city"
+          name="city"
+          formControlName="city"
+        />
+        @if(register.employeeForm.controls['city'].errors?.['invalidText']) {
+        <div class="alert alert-danger mt-2">City name can only contain letters!</div>
+        }
+      </div>
+
+      <!-- Country -->
+      <div class="form-group">
+        <label for="inputCountry" class="form-label">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCountry"
+          placeholder="Enter country"
+          name="country"
+          formControlName="country"
+        />
+
+        @if(register.employeeForm.controls['country'].errors?.['invalidText']) {
+        <div class="alert alert-danger mt-2">Country name can only contain letters!</div>
+        }
+      </div>
+
+      <!-- Address -->
+      <div class="form-group full-width">
+        <label for="inputAddress" class="form-label">Address</label>
+        <textarea
+          rows="2"
+          class="form-control"
+          id="inputAddress"
+          placeholder="Enter address"
+          name="address"
+          formControlName="address"
+        ></textarea>
+      </div>
+
+      <!-- Zipcode -->
+      <div class="form-group">
+        <label for="inputZipcode" class="form-label">Zipcode</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputZipcode"
+          placeholder="Enter 6-digit zipcode"
+          name="zipcode"
+          formControlName="zipcode"
+        />
+        @if(register.employeeForm.controls['zipcode'].errors?.['invalidZip']) {
+        <div class="alert alert-danger mt-2">Zipcode must be 6 digits!</div>
+        }
+      </div>
+
+      <!-- Skill Sets -->
+      <div class="form-group">
+        <label for="inputSkillSets" class="form-label">Skill Sets</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputSkillSets"
+          placeholder="Enter skill sets"
+          name="skillSets"
+          formControlName="skillSets"
+        />
+      </div>
+
+      <!-- Joining Date -->
+      <div class="form-group">
+        <label for="inputJoiningDate" class="form-label">Joining Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="inputJoiningDate"
+          placeholder="Select joining date"
+          name="joiningDate"
+          formControlName="joiningDate"
+        />
+        @if(register.employeeForm.controls['joiningDate'].errors?.['futureDate']) {
+        <div class="alert alert-danger mt-2">Joining date cannot be in the future!</div>
+        }
+      </div>
+
+      <!-- Avatar URL -->
+      <div class="form-group">
+        <label for="inputAvatar" class="form-label">Avatar URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAvatar"
+          placeholder="Optional avatar URL"
+          name="avatar"
+          formControlName="avatar"
+        />
+      </div>
+    </fieldset>
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-dark px-4" [disabled]="!employeeForm.valid">
+        Register Employee
+      </button>
+    </div>
+  </form>
+</div>
