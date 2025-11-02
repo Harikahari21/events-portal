@@ -8,7 +8,7 @@ import { AuthResponse } from '../models/auth-response';
   providedIn: 'root',
 })
 export class SecurityApi {
-  private _baseUrl: string = 'http://192.168.1.30:9090/api';
+  private _baseUrl: string = 'http://localhost:9090/api';
   private _httpClient = inject(HttpClient);
 
   public authenticateCredentials(user: AuthRequest): Observable<AuthResponse> {

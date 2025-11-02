@@ -8,7 +8,7 @@ import { CudResponse } from '../../../shared/models/cud-response';
   providedIn: 'root',
 })
 export class EmployeesApi {
-  private _baseUrl: string = 'http://192.168.1.30:9090/api';
+  private _baseUrl: string = 'http://localhost:9090/api';
   private _httpClient = inject(HttpClient);
   public getAllEmployees(): Observable<Employee[]> {
     return this._httpClient.get<Employee[]>(`${this._baseUrl}/employees`);
